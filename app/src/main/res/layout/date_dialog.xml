@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/textHeader"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:text="Date and Location"
+        android:textAlignment="center"
+        android:gravity="center"
+        android:textSize="17dp"
+        android:textColor="@color/btnColor"
+        android:background="@color/mainColor"
+        android:layout_marginRight="8dp"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginLeft="8dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="5dp"
+        app:layout_constraintHorizontal_bias="0.085"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp" />
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_below="@id/textHeader"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Select date"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="15dp"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintHorizontal_bias="0.085"
+            android:layout_below="@+id/textHeader"
+            android:layout_alignLeft="@+id/textHeader"
+            android:layout_alignStart="@+id/textHeader" />
+
+        <RadioGroup
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent">
+            <RadioButton
+                android:id="@+id/radioToday"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Select today's date"
+                app:layout_constraintHorizontal_bias="0.08"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                android:layout_below="@+id/textView2"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
+
+            <RadioButton
+                android:id="@+id/radioCalendar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Pick another date from the calendar"
+                app:layout_constraintHorizontal_bias="0.08"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                android:layout_below="@+id/radioCurrent"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
+        </RadioGroup>
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Select Location"
+            android:layout_marginLeft="5dp"
+            android:layout_below="@+id/radioCalendar"
+            android:layout_alignLeft="@+id/textView2"
+            android:layout_alignStart="@+id/textView2" />
+
+        <RadioGroup
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <RadioButton
+                android:id="@+id/radioLocation"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Select current location"
+                app:layout_constraintHorizontal_bias="0.08"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                android:layout_below="@+id/textView3"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
+
+            <RadioButton
+                android:id="@+id/radioMap"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Pick another location from the map"
+                app:layout_constraintHorizontal_bias="0.08"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                android:layout_below="@+id/radioLocation"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
+        </RadioGroup>
+
+        <Button
+            android:id="@+id/btnOkay"
+            android:background="@color/mainColor"
+            android:layout_width="wrap_content"
+            android:textColor="@color/btnColor"
+            android:layout_height="30dp"
+            android:layout_alignLeft="@+id/textHeader"
+            android:layout_alignParentTop="true"
+            android:layout_alignStart="@+id/textHeader"
+            android:layout_marginLeft="54dp"
+            android:layout_marginStart="54dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:text="@string/btnOkay" />
+
+    </LinearLayout>
+
+</RelativeLayout>
