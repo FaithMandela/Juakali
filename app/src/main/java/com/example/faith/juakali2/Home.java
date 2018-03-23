@@ -17,6 +17,7 @@ import android.support.v4.app.DialogFragment;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -24,6 +25,7 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -32,9 +34,15 @@ import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.MapView;
+import com.google.android.gms.maps.MapsInitializer;
+
 import java.text.DateFormat;
 import java.util.Calendar;
 import java.util.Date;
+
+import cn.pedant.SweetAlert.SweetAlertDialog;
 
 public class Home extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
 
@@ -59,9 +67,6 @@ public class Home extends AppCompatActivity implements DatePickerDialog.OnDateSe
 
 
     }
-
-
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -162,28 +167,27 @@ public class Home extends AppCompatActivity implements DatePickerDialog.OnDateSe
             dialog.show();
 
             //Dates
-            RadioButton radioToday = (RadioButton) dialog.findViewById(R.id.radioToday);
+           // RadioButton radioToday = (RadioButton) dialog.findViewById(R.id.radioToday);
             RadioButton radioCalendar = (RadioButton) dialog.findViewById(R.id.radioCalendar);
+            Button btnOkay = (Button)dialog.findViewById(R.id.btnOkay);
 
             //Location
             RadioButton radioLocation = (RadioButton) dialog.findViewById(R.id.radioLocation);
             RadioButton radioMap = (RadioButton) dialog.findViewById(R.id.radioMap);
 
-            //Get today's date
-            radioToday.setOnClickListener(new View.OnClickListener() {
+            btnOkay.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Date today = new Date();
-                    Toast.makeText(getApplicationContext(), "Todays date is :" + today, Toast.LENGTH_LONG).show();
+                    dialog.dismiss();
                 }
             });
-
             //Get calendar
             radioCalendar.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     DialogFragment datePicker = new com.example.faith.juakali2.DatePicker();
                     datePicker.show(getSupportFragmentManager(), "data_picker");
+
                 }
             });
 
@@ -231,6 +235,14 @@ public class Home extends AppCompatActivity implements DatePickerDialog.OnDateSe
                 }
             });
 
+            radioMap.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(Home.this, com.example.faith.juakali2.MapView.class);
+                    startActivity(intent);
+                }
+            });
+
         }
 
 
@@ -254,6 +266,14 @@ public class Home extends AppCompatActivity implements DatePickerDialog.OnDateSe
                 break;
         }
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+    }
+
+    @Override
+    public void onBackPressed() {
+        SweetAlertDialog sweetAlertDialog = new SweetAlertDialog(Home.this,SweetAlertDialog.WARNING_TYPE);
+        sweetAlertDialog.setTitleText("Are you sure you want to log out?");
+        sweetAlertDialog.show();
+        super.onBackPressed();
     }
 }
 
